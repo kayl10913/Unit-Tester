@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Header from './components/Header.jsx';
+import IntroSection from './components/IntroSection.jsx';
 import CodeEditor from './components/CodeEditor.jsx';
 import TestGenerator from './components/TestGenerator.jsx';
 import VulnerabilityChecker from './components/VulnerabilityChecker.jsx';
@@ -26,6 +27,7 @@ function App() {
       <Header />
       
       <main className="container mx-auto px-4 py-8">
+        <IntroSection />
         {/* Tab Navigation */}
         <div className="glass-dark rounded-2xl p-2 mb-8 shadow-2xl">
           <div className="flex space-x-1">
