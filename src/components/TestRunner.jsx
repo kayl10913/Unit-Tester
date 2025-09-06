@@ -57,20 +57,20 @@ const TestRunner = ({ sourceCode, generatedTests, testResults, setTestResults, i
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <div className="card hover-card">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 sm:mb-6 gap-4">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-green-500/10 rounded-lg">
-              <TestTube className="text-green-400" size={24} />
+              <TestTube className="text-green-400" size={20} />
             </div>
-            <h2 className="text-xl font-semibold text-gray-100">Test Runner</h2>
+            <h2 className="text-lg sm:text-xl font-semibold text-gray-100">Test Runner</h2>
           </div>
           <div className="flex items-center space-x-3">
             <select
               value={testEnvironment}
               onChange={(e) => setTestEnvironment(e.target.value)}
-              className="input-field text-sm"
+              className="input-field text-sm w-full sm:w-auto"
             >
               <option value="node">Node.js</option>
               <option value="browser">Browser</option>
@@ -79,13 +79,13 @@ const TestRunner = ({ sourceCode, generatedTests, testResults, setTestResults, i
           </div>
         </div>
 
-        <div className="flex items-center space-x-3 mb-6">
+        <div className="flex items-center space-x-3 mb-4 sm:mb-6">
           <button
             onClick={handleRunTests}
             disabled={!sourceCode.trim() || !generatedTests.trim() || isLoading}
-            className="btn-success btn-hover-effect flex items-center space-x-2"
+            className="btn-success btn-hover-effect flex items-center space-x-2 text-sm"
           >
-            <Play size={18} />
+            <Play size={16} />
             <span>{isLoading ? 'Running Tests...' : 'Run Tests'}</span>
           </button>
         </div>
@@ -120,22 +120,22 @@ const TestRunner = ({ sourceCode, generatedTests, testResults, setTestResults, i
               </div>
               <h3 className="text-lg font-semibold text-gray-100">Test Results Overview</h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              <div className="text-center p-6 bg-gray-800/50 rounded-xl border border-gray-600/50">
-                <div className="text-4xl font-bold text-gray-200">{testResults.totalTests || 0}</div>
-                <div className="text-gray-400 text-sm mt-2">Total Tests</div>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
+              <div className="text-center p-4 sm:p-6 bg-gray-800/50 rounded-xl border border-gray-600/50">
+                <div className="text-3xl sm:text-4xl font-bold text-gray-200">{testResults.totalTests || 0}</div>
+                <div className="text-gray-400 text-xs sm:text-sm mt-2">Total Tests</div>
               </div>
-              <div className="text-center p-6 bg-green-500/10 rounded-xl border border-green-500/20">
-                <div className="text-4xl font-bold text-green-400">{testResults.passedTests || 0}</div>
-                <div className="text-gray-400 text-sm mt-2">Passed</div>
+              <div className="text-center p-4 sm:p-6 bg-green-500/10 rounded-xl border border-green-500/20">
+                <div className="text-3xl sm:text-4xl font-bold text-green-400">{testResults.passedTests || 0}</div>
+                <div className="text-gray-400 text-xs sm:text-sm mt-2">Passed</div>
               </div>
-              <div className="text-center p-6 bg-red-500/10 rounded-xl border border-red-500/20">
-                <div className="text-4xl font-bold text-red-400">{testResults.failedTests || 0}</div>
-                <div className="text-gray-400 text-sm mt-2">Failed</div>
+              <div className="text-center p-4 sm:p-6 bg-red-500/10 rounded-xl border border-red-500/20">
+                <div className="text-3xl sm:text-4xl font-bold text-red-400">{testResults.failedTests || 0}</div>
+                <div className="text-gray-400 text-xs sm:text-sm mt-2">Failed</div>
               </div>
-              <div className="text-center p-6 bg-blue-500/10 rounded-xl border border-blue-500/20">
-                <div className="text-4xl font-bold text-blue-400">{getCoveragePercentage()}%</div>
-                <div className="text-gray-400 text-sm mt-2">Coverage</div>
+              <div className="text-center p-4 sm:p-6 bg-blue-500/10 rounded-xl border border-blue-500/20">
+                <div className="text-3xl sm:text-4xl font-bold text-blue-400">{getCoveragePercentage()}%</div>
+                <div className="text-gray-400 text-xs sm:text-sm mt-2">Coverage</div>
               </div>
             </div>
           </div>
@@ -237,22 +237,22 @@ const TestRunner = ({ sourceCode, generatedTests, testResults, setTestResults, i
                 ></div>
               </div>
               
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div className="text-center p-4 bg-purple-500/10 rounded-xl border border-purple-500/20">
-                  <div className="text-2xl font-bold text-purple-400">{getCoveragePercentage()}%</div>
-                  <div className="text-gray-400 text-sm mt-1">Overall Coverage</div>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
+                <div className="text-center p-3 sm:p-4 bg-purple-500/10 rounded-xl border border-purple-500/20">
+                  <div className="text-xl sm:text-2xl font-bold text-purple-400">{getCoveragePercentage()}%</div>
+                  <div className="text-gray-400 text-xs sm:text-sm mt-1">Overall Coverage</div>
                 </div>
-                <div className="text-center p-4 bg-green-500/10 rounded-xl border border-green-500/20">
-                  <div className="text-2xl font-bold text-green-400">{testResults.linesCovered || 0}</div>
-                  <div className="text-gray-400 text-sm mt-1">Lines Covered</div>
+                <div className="text-center p-3 sm:p-4 bg-green-500/10 rounded-xl border border-green-500/20">
+                  <div className="text-xl sm:text-2xl font-bold text-green-400">{testResults.linesCovered || 0}</div>
+                  <div className="text-gray-400 text-xs sm:text-sm mt-1">Lines Covered</div>
                 </div>
-                <div className="text-center p-4 bg-yellow-500/10 rounded-xl border border-yellow-500/20">
-                  <div className="text-2xl font-bold text-yellow-400">{testResults.linesTotal || 0}</div>
-                  <div className="text-gray-400 text-sm mt-1">Total Lines</div>
+                <div className="text-center p-3 sm:p-4 bg-yellow-500/10 rounded-xl border border-yellow-500/20">
+                  <div className="text-xl sm:text-2xl font-bold text-yellow-400">{testResults.linesTotal || 0}</div>
+                  <div className="text-gray-400 text-xs sm:text-sm mt-1">Total Lines</div>
                 </div>
-                <div className="text-center p-4 bg-blue-500/10 rounded-xl border border-blue-500/20">
-                  <div className="text-2xl font-bold text-blue-400">{testResults.branchesCovered || 0}</div>
-                  <div className="text-gray-400 text-sm mt-1">Branches Covered</div>
+                <div className="text-center p-3 sm:p-4 bg-blue-500/10 rounded-xl border border-blue-500/20">
+                  <div className="text-xl sm:text-2xl font-bold text-blue-400">{testResults.branchesCovered || 0}</div>
+                  <div className="text-gray-400 text-xs sm:text-sm mt-1">Branches Covered</div>
                 </div>
               </div>
             </div>

@@ -281,12 +281,156 @@ code {
 }
 
 /* Responsive design improvements */
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .card {
-    @apply p-4;
+    padding: 0.75rem;
   }
   
   .btn-primary, .btn-secondary, .btn-success, .btn-warning {
-    @apply px-3 py-2 text-sm;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+  
+  .input-field {
+    font-size: 0.875rem;
+  }
+  
+  /* Hide scrollbars on mobile for horizontal scrolling */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Optimize animations for mobile */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.4s ease-out;
+  }
+  
+  .animate-slide-in-right {
+    animation: slideInRight 0.4s ease-out;
+  }
+  
+  /* Reduce hover effects on touch devices */
+  .hover-card:hover {
+    transform: translateY(-2px) scale(1.01);
+  }
+  
+  .btn-hover-effect:hover {
+    transform: scale(1.02);
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .card {
+    padding: 1.25rem;
+  }
+  
+  .btn-primary, .btn-secondary, .btn-success, .btn-warning {
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .card {
+    padding: 1.5rem;
+  }
+  
+  .btn-primary, .btn-secondary, .btn-success, .btn-warning {
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Mobile-first responsive utilities */
+@media (max-width: 480px) {
+  .container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  .text-2xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+  
+  .text-xl {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+  
+  .text-lg {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  
+  .space-y-8 > * + * {
+    margin-top: 1rem;
+  }
+  
+  .space-y-6 > * + * {
+    margin-top: 0.75rem;
+  }
+  
+  .space-y-4 > * + * {
+    margin-top: 0.5rem;
+  }
+}
+
+/* Touch-friendly button sizing */
+@media (hover: none) and (pointer: coarse) {
+  .btn-primary, .btn-secondary, .btn-success, .btn-warning {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Disable hover effects on touch devices */
+  .hover-card:hover {
+    transform: none;
+  }
+  
+  .btn-hover-effect:hover {
+    transform: none;
+  }
+}
+
+/* High DPI display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .text-gradient, .text-gradient-primary {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Dark mode optimizations for mobile */
+@media (prefers-color-scheme: dark) and (max-width: 768px) {
+  .glass-dark {
+    background: rgba(0, 0, 0, 0.4);
+  }
+  
+  .card {
+    background: rgba(31, 41, 55, 0.6);
+  }
+}
+
+/* Landscape mobile optimizations */
+@media (max-width: 768px) and (orientation: landscape) {
+  .container {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .card {
+    padding: 0.75rem;
+  }
+  
+  .space-y-8 > * + * {
+    margin-top: 0.75rem;
+  }
+  
+  .space-y-6 > * + * {
+    margin-top: 0.5rem;
   }
 }

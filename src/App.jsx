@@ -26,26 +26,26 @@ function App() {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       <Header />
       
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-6 lg:py-8">
         <IntroSection />
         {/* Tab Navigation */}
-        <div className="glass-dark rounded-2xl p-2 mb-8 shadow-2xl">
-          <div className="flex space-x-1">
+        <div className="glass-dark rounded-2xl p-1 sm:p-2 mb-4 sm:mb-6 lg:mb-8 shadow-2xl">
+          <div className="flex overflow-x-auto scrollbar-hide space-x-1">
             {tabs.map((tab, index) => {
               const Icon = tab.icon;
               return (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center space-x-3 px-6 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 ${
+                  className={`flex items-center space-x-2 sm:space-x-3 px-3 sm:px-4 lg:px-6 py-2 sm:py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 whitespace-nowrap flex-shrink-0 ${
                     activeTab === tab.id
                       ? 'bg-gradient-to-r from-blue-600/20 to-purple-600/20 text-blue-300 border border-blue-500/30 shadow-lg'
                       : 'text-gray-400 hover:text-gray-200 hover:bg-gray-700/30'
                   }`}
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <Icon size={20} className="animate-fade-in-up" />
-                  <span className="animate-fade-in-up">{tab.label}</span>
+                  <Icon size={18} className="sm:w-5 sm:h-5 animate-fade-in-up" />
+                  <span className="animate-fade-in-up text-sm sm:text-base">{tab.label}</span>
                 </button>
               );
             })}
@@ -53,7 +53,7 @@ function App() {
         </div>
 
         {/* Tab Content */}
-        <div className="space-y-8">
+        <div className="space-y-4 sm:space-y-6 lg:space-y-8">
           {activeTab === 'editor' && (
             <div className="animate-fade-in-up">
               <CodeEditor

@@ -62,20 +62,20 @@ const TestGenerator = ({ sourceCode, generatedTests, setGeneratedTests, isLoadin
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <div className="card hover-card">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 sm:mb-6 gap-4">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-purple-500/10 rounded-lg">
-              <TestTube className="text-purple-400" size={24} />
+              <TestTube className="text-purple-400" size={20} />
             </div>
-            <h2 className="text-xl font-semibold text-gray-100">AI Test Generator</h2>
+            <h2 className="text-lg sm:text-xl font-semibold text-gray-100">AI Test Generator</h2>
           </div>
-          <div className="flex items-center space-x-3">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
             <select
               value={testFramework}
               onChange={(e) => setTestFramework(e.target.value)}
-              className="input-field text-sm"
+              className="input-field text-sm w-full sm:w-auto"
             >
               <option value="jest">Jest</option>
               <option value="mocha">Mocha</option>
@@ -85,7 +85,7 @@ const TestGenerator = ({ sourceCode, generatedTests, setGeneratedTests, isLoadin
             <select
               value={coverage}
               onChange={(e) => setCoverage(e.target.value)}
-              className="input-field text-sm"
+              className="input-field text-sm w-full sm:w-auto"
             >
               <option value="basic">Basic Coverage</option>
               <option value="medium">Medium Coverage</option>
@@ -95,13 +95,13 @@ const TestGenerator = ({ sourceCode, generatedTests, setGeneratedTests, isLoadin
           </div>
         </div>
 
-        <div className="flex items-center space-x-3 mb-6">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
           <button
             onClick={handleGenerateTests}
             disabled={!sourceCode.trim() || isLoading}
-            className="btn-primary btn-hover-effect flex items-center space-x-2"
+            className="btn-primary btn-hover-effect flex items-center space-x-2 text-sm"
           >
-            <Sparkles size={18} />
+            <Sparkles size={16} />
             <span>{isLoading ? 'Generating...' : 'Generate Tests'}</span>
           </button>
           
@@ -109,12 +109,13 @@ const TestGenerator = ({ sourceCode, generatedTests, setGeneratedTests, isLoadin
             <>
               <button
                 onClick={handleCopy}
-                className="btn-secondary btn-hover-effect flex items-center space-x-2"
+                className="btn-secondary btn-hover-effect flex items-center space-x-2 text-sm"
               >
                 {copied ? (
                   <>
                     <Check size={16} />
-                    <span>Copied!</span>
+                    <span className="hidden sm:inline">Copied!</span>
+                    <span className="sm:hidden">✓</span>
                   </>
                 ) : (
                   <>
@@ -126,10 +127,11 @@ const TestGenerator = ({ sourceCode, generatedTests, setGeneratedTests, isLoadin
               
               <button
                 onClick={handleDownload}
-                className="btn-secondary btn-hover-effect flex items-center space-x-2"
+                className="btn-secondary btn-hover-effect flex items-center space-x-2 text-sm"
               >
                 <Download size={16} />
-                <span>Download</span>
+                <span className="hidden sm:inline">Download</span>
+                <span className="sm:hidden">Save</span>
               </button>
             </>
           )}
@@ -157,20 +159,20 @@ const TestGenerator = ({ sourceCode, generatedTests, setGeneratedTests, isLoadin
 
         {generatedTests && !isLoading && (
           <div className="border border-gray-600/50 rounded-xl overflow-hidden shadow-2xl">
-            <div className="bg-gray-800/50 px-6 py-3 border-b border-gray-600/50">
+            <div className="bg-gray-800/50 px-4 sm:px-6 py-3 border-b border-gray-600/50">
               <h3 className="text-sm font-medium text-gray-300">
                 Generated Tests ({testFramework.toUpperCase()})
               </h3>
             </div>
             <Editor
-              height="500px"
+              height="300px"
               language={getTestFrameworkLanguage()}
               value={generatedTests}
               theme="vs-dark"
               options={{
                 readOnly: true,
                 minimap: { enabled: false },
-                fontSize: 14,
+                fontSize: 12,
                 lineNumbers: 'on',
                 roundedSelection: false,
                 scrollBeyondLastLine: false,
@@ -191,30 +193,30 @@ const TestGenerator = ({ sourceCode, generatedTests, setGeneratedTests, isLoadin
             </div>
             <h3 className="text-lg font-semibold text-gray-100">Test Statistics</h3>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="text-center p-4 bg-blue-500/10 rounded-xl border border-blue-500/20">
-              <div className="text-3xl font-bold text-blue-400">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
+            <div className="text-center p-3 sm:p-4 bg-blue-500/10 rounded-xl border border-blue-500/20">
+              <div className="text-2xl sm:text-3xl font-bold text-blue-400">
                 {generatedTests.split('test(').length - 1 + generatedTests.split('it(').length - 1}
               </div>
-              <div className="text-gray-400 text-sm mt-1">Test Cases</div>
+              <div className="text-gray-400 text-xs sm:text-sm mt-1">Test Cases</div>
             </div>
-            <div className="text-center p-4 bg-green-500/10 rounded-xl border border-green-500/20">
-              <div className="text-3xl font-bold text-green-400">
+            <div className="text-center p-3 sm:p-4 bg-green-500/10 rounded-xl border border-green-500/20">
+              <div className="text-2xl sm:text-3xl font-bold text-green-400">
                 {generatedTests.split('describe(').length - 1}
               </div>
-              <div className="text-gray-400 text-sm mt-1">Test Suites</div>
+              <div className="text-gray-400 text-xs sm:text-sm mt-1">Test Suites</div>
             </div>
-            <div className="text-center p-4 bg-yellow-500/10 rounded-xl border border-yellow-500/20">
-              <div className="text-3xl font-bold text-yellow-400">
+            <div className="text-center p-3 sm:p-4 bg-yellow-500/10 rounded-xl border border-yellow-500/20">
+              <div className="text-2xl sm:text-3xl font-bold text-yellow-400">
                 {generatedTests.split('\n').length}
               </div>
-              <div className="text-gray-400 text-sm mt-1">Lines of Tests</div>
+              <div className="text-gray-400 text-xs sm:text-sm mt-1">Lines of Tests</div>
             </div>
-            <div className="text-center p-4 bg-purple-500/10 rounded-xl border border-purple-500/20">
-              <div className="text-3xl font-bold text-purple-400">
+            <div className="text-center p-3 sm:p-4 bg-purple-500/10 rounded-xl border border-purple-500/20">
+              <div className="text-2xl sm:text-3xl font-bold text-purple-400">
                 {Math.round(generatedTests.length / 1024 * 100) / 100}
               </div>
-              <div className="text-gray-400 text-sm mt-1">KB</div>
+              <div className="text-gray-400 text-xs sm:text-sm mt-1">KB</div>
             </div>
           </div>
         </div>
